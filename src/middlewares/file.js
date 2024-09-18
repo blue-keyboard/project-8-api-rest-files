@@ -1,15 +1,19 @@
 const cloudinary = require('cloudinary').v2
 const multer = require('multer')
 const { CloudinaryStorage } = require('multer-storage-cloudinary')
+const JESTERLY_STORAGE_NAME = 'Jesterly API REST Files'
 
-const storage = new CloudinaryStorage({
-   cloudinary: cloudinary,
-   params: {
-      folder: 'Jesterly API REST Files',
-      allowedFormats: ['jpg', 'jpeg', 'png', 'gif', 'webp']
-   }
-})
+const createCloudinaryStorage = (folderName) => {
+   return (storage = new CloudinaryStorage({
+      cloudinary: cloudinary,
+      params: {
+         folder: folderName,
+         allowedFormats: ['jpg', 'jpeg', 'png', 'gif', 'webp']
+      }
+   }))
+}
 
-const upload = multer({ storage })
+const JesterlyStorage = createCloudinaryStorage(JESTERLY_STORAGE_NAME)
+const upload = multer({ storage: JesterlyStorage })
 
 module.exports = { upload }
