@@ -62,9 +62,7 @@ const register = async (req, res, next) => {
 // Everyone
 const login = async (req, res, next) => {
    try {
-      const user = await User.findOne({ username: req.body.username }).populate(
-         populateQuery
-      )
+      const user = await User.findOne({ username: req.body.username })
 
       if (!user) {
          return res.status(404).json('Username not found')
@@ -106,7 +104,7 @@ const updateUser = async (req, res, next) => {
             new: true,
             runValidators: true
          }
-      ).populate(populateQuery)
+      )
 
       if (
          req.user.profile_pic !== userUpdated.profile_pic &&
@@ -131,9 +129,7 @@ const deleteUser = async (req, res, next) => {
             .json("You don't have permissions to perform this action")
       }
 
-      const userDeleted = await User.findByIdAndDelete(req.params.id).populate(
-         populateQuery
-      )
+      const userDeleted = await User.findByIdAndDelete(req.params.id)
 
       if (userDeleted.profile_pic !== DEFAULT_PROFILE_PIC) {
          deleteFile(userDeleted.profile_pic)

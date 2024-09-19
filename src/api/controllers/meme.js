@@ -54,7 +54,7 @@ const deleteMeme = async (req, res, next) => {
    try {
       const { _id, role } = req.user
       const memeId = req.params.id
-      const meme = await Meme.findById(memeId).populate(populateQuery)
+      const meme = await Meme.findById(memeId)
 
       if (!meme.uploader.equals(_id) && role === 'user') {
          return res
@@ -74,7 +74,7 @@ const deleteMeme = async (req, res, next) => {
 const getMemesByTag = async (req, res, next) => {
    try {
       const { tag } = req.params
-      const memes = await Meme.find({ tags: tag }).populate(populateQuery)
+      const memes = await Meme.find({ tags: tag })
 
       return res.status(200).json(memes)
    } catch (error) {

@@ -78,9 +78,9 @@ npm run seed
 **Memes**
 
 | HTTP Method | URL                                          | Auth              | Description                              |
-| ----------- | -------------------------------------------- | ----------------- | ---------------------------------------- | ---- |
+| ----------- | -------------------------------------------- | ----------------- | ---------------------------------------- |
 | `GET`       | http://localhost:3000/api/v1/memes           | Everyone          | Retrieves list of Memes                  |
-| `GET`       | http://localhost:3000/api/v1/memes/:id       | Everyone          | Retrieves Meme by Id                     | list |
+| `GET`       | http://localhost:3000/api/v1/memes/:id       | Everyone          | Retrieves Meme by Id                     |
 | `GET`       | http://localhost:3000/api/v1/memes/tags/:tag | Everyone          | Retrieves list of Memes that matches tag |
 | `POST`      | http://localhost:3000/api/v1/memes/          | User              | Adds new Meme to database                |
 | `DELETE`    | http://localhost:3000/api/v1/memes/:id       | Admin / Same User | Deletes Meme by Id                       |

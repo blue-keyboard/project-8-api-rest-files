@@ -6,12 +6,14 @@ const bcrypt = require('bcrypt')
 
 const seedUsers = async () => {
    try {
-      const usersHashed = users.map(
-         (user) => (user.password = bcrypt.hashSync(user.password, 10))
-      )
+      const usersHashed = structuredClone(users).map((user) => {
+         user.password = bcrypt.hashSync(user.password, 10)
+         return user
+      })
+
       await User.collection.drop()
       console.log('Users deleted')
-      await User.insertMany(users)
+      await User.insertMany(usersHashed)
       console.log('Users introduced')
    } catch (error) {
       console.log(error, 'error seedUsers')
